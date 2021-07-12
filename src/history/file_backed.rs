@@ -226,9 +226,8 @@ impl FileBackedHistory {
             let entry = &self.entries[cursor];
             if criteria(entry) {
                 if previous_match
-                    // TODO Get rid of this clone
-                    .clone()
-                    .map_or(false, |value| &value == entry)
+                    .as_ref()
+                    .map_or(false, |value| value == entry)
                 {
                     continue;
                 } else {
@@ -250,9 +249,8 @@ impl FileBackedHistory {
             if criteria(entry) {
                 // if entry.contains(&substring) {
                 if previous_match
-                    // TODO Get rid of this clone
-                    .clone()
-                    .map_or(false, |value| &value == entry)
+                    .as_ref()
+                    .map_or(false, |value| value == entry)
                 {
                     continue;
                 } else {
